@@ -6,7 +6,7 @@ const cors = require("cors");
 
 // DATABASE INIT
 mongoose.connect("mongodb://localhost/emotions", {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.set("debug", true);
+mongoose.set("debug", false);
 let db = mongoose.connection;
 db.once("open", () => console.log("Connected to MongoDB"));
 db.on("error", (err) => console.log(err));
