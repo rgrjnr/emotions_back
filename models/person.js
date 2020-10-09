@@ -3,6 +3,10 @@ let mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 let personSchema = mongoose.Schema({
+  Tag: { type: String },
+  ImageURL: { type: String },
+  VideoURL: { type: String },
+  Timestamp: { type: Number },
   CreationDate: { type: Date, default: Date.now },
   Location: {
     Lat: { type: Number },
