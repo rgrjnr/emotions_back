@@ -91,7 +91,7 @@ router.get("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit) || 150;
+    const limit = parseInt(req.query.limit) || 50;
     const page = parseInt(req.query.page) || 1;
     const skip = page * limit - limit;
     const projection = null;
