@@ -66,10 +66,10 @@ router.post("/binary", async (req, res) => {
                 }
 
                 person.save();
+                return res.json(person); // successful response
               });
             }
 
-            return res.json(data); // successful response
           }
         });
       }
@@ -93,18 +93,24 @@ router.get("/", async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 50;
     const page = parseInt(req.query.page) || 1;
+    const random = Boolean(req.query.random) || false;
     const skip = page * limit - limit;
     const projection = null;
 
+    let count = await Person.find({}, projection).countDocuments();
+
+    console.log(random)
+    
     const options = {
       sort: {
         CreationDate: -1,
       },
       limit,
-      skip,
+      skip: random ? Math.random()*count : skip,
     };
 
-    let count = await Person.find({}, projection).countDocuments();
+    console.log(options.skip)
+
     let people = await Person.find({}, projection).setOptions(options).exec();
 
     return await res.json({

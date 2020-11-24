@@ -1,4 +1,5 @@
 let mongoose = require("mongoose");
+var random = require('mongoose-simple-random');
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
@@ -78,5 +79,7 @@ let personSchema = mongoose.Schema({
   },
   Confidence: { type: Number },
 });
+
+personSchema.plugin(random);
 
 let Person = (module.exports = mongoose.model("Person", personSchema));
